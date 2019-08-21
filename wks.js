@@ -12,10 +12,10 @@ function search(question){
   let scores = {}, query = question.toLowerCase();
   // build scores from question and index
   index.forEach(i => {
-    if(query.indexOf(i.keyword) !== -1){
-      let score = scores[i.service] || 0;
-      scores[i.service] = score + i.weight;
-    }
+    if(query.indexOf(i.keyword) === -1) return;
+    // add weight to the services score
+    let score = scores[i.service] || 0;
+    scores[i.service] = score + i.weight;
   });
   return scores;
 }
